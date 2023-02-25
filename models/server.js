@@ -1,5 +1,7 @@
 const express = require('express')
-const cors = require('cors')
+const cors = require('cors');
+
+const { dbConnection } = require('../database/config');
  
 
 
@@ -9,10 +11,19 @@ class Server{
         this.port = process.env.PORT;
         this.usuariosPath = '/api/usuarios'
 
+        //conectar db
+        this.conectarDB();
+
+        //middlewares
         this.middlewares();
 
         this.routes();
     }
+
+    async conectarDB(){
+        await dbConnection();
+    }
+
     middlewares(){
         //Carpeta publica
         this.app.use(cors());
