@@ -1,7 +1,6 @@
 const {response,request} = require('express');
 const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
-const {esRoleValido, existeEmail} = require('../helpers/db-validators');
 
 
 
@@ -76,15 +75,10 @@ const usuariosPut = async(req, res = response)=> {
 
 const usuariosDelete = async(req, res = response)=> {
     const {id} = req.params;
-    
-    //Borrado Fisico
-    //const usuario = await Usuario.findByIdAndDelete(id);
 
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
 
-    res.json({
-        id
-    });
+    res.json(usuario);
 }
 
 const usuariosPatch = (req, res = response)=> {
