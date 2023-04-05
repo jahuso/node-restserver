@@ -18,6 +18,7 @@ const ProductoSchema = Schema({
         default:true,
         required:true
     },
+    img: {type:String},
     precio:{
         type: Number,
         default: 0
